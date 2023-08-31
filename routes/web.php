@@ -14,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('tasks', App\Http\Controllers\TaskController::class);
+Route::post('tasks/update-order',[App\Http\Controllers\TaskController::class, 'updateOrder'])->name('tasks.updateorder'); 
+
+
+Route::resource('projects', App\Http\Controllers\ProjectController::class);
